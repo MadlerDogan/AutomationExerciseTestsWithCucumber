@@ -22,7 +22,7 @@ public class RegisterPage {
     @FindBy(xpath = "//input[@name='name']")
     public WebElement nameTextBox;
 
-    @FindBy(xpath = "//input[@name='email']")
+    @FindBy(xpath = "//input[@data-qa='signup-email']")
     public WebElement emailTextBox;
 
     @FindBy(xpath = "//button[contains(text(),'Signup')]")
@@ -70,7 +70,7 @@ public class RegisterPage {
     @FindBy(xpath = "//input[@id='address2']")
     public WebElement adresse2TextBox;
 
-    @FindBy(xpath = "select[id='country']")
+    @FindBy(xpath = "//select[@id='country']")
     public WebElement countryDDM;
 
     @FindBy(xpath = "//input[@id='state']")

@@ -1,4 +1,5 @@
 package runner;
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -8,10 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"html:src/test/resources/reports/Reports.html"},
         features = "src/test/resources/features",
         glue ="stepdef",
-        tags = "@yeni"
+        tags = "@US01")
 
-
-)
-public class Runner {
-
+public class Runner01 {
 }

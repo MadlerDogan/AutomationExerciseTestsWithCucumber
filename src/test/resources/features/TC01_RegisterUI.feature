@@ -1,10 +1,10 @@
-@deneme
-Feature: Automatin Exercise
+
+Feature: Automation Exercise Tests
   Background: Launch browser and website
     Given Launch browser
     When Navigate to url "http://automationexercise.com"
   @TC01
-  Scenario Outline: TC01 Register
+  Scenario Outline: TC01 Register end to end test
     Given Verify that home page is visible successfully
     And Click on Signup Login button
     Then Verify New User Signup! is visible

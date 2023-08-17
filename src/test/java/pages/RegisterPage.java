@@ -92,7 +92,7 @@ public class RegisterPage {
     public WebElement accountCreatedText;
 
     @FindBy(xpath = "//a[contains(text(),'Continue')]")
-    public WebElement continiueButton;
+    public WebElement continueButtonAfterCreated;
 
     @FindBy(xpath = "//a[contains(text(),' Logged in as ')]")
     public WebElement loggedInAsText;
@@ -104,7 +104,7 @@ public class RegisterPage {
     public WebElement accountDeletedText;
 
     @FindBy(xpath = "//a[@data-qa='continue-button']")
-    public WebElement continueButton;
+    public WebElement continueButtonAfterDelete;
 
 
 }

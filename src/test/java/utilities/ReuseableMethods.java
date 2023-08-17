@@ -23,9 +23,9 @@ public class ReuseableMethods {
 
     static Faker faker = new Faker();
 
-    public static void wait(int saniye) {
+    public static void wait(int second) {
         try {
-            Thread.sleep(saniye * 1000);
+            Thread.sleep(second * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

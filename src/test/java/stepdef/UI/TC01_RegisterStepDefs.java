@@ -8,7 +8,9 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.RegisterPage;
 import utilities.ConfigReader;
@@ -128,7 +130,7 @@ public class TC01_RegisterStepDefs {
 
     @When("Fill details: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
     public void fillDetails(String firstName, String lastName, String company, String address, String address2, String country, String state, String city, String zipCode, String mobileNumber) {
-
+        registerPage =new RegisterPage();
      //firstname
      registerPage.firstnameTextBox.sendKeys(firstName);
      //lastname
@@ -155,36 +157,70 @@ public class TC01_RegisterStepDefs {
      //mobileNumber
      registerPage.mobileNumberTextBox.sendKeys(mobileNumber);
 
-
+        ReuseableMethods.wait(1);
     }
 
     @And("Click Create Account button")
     public void clickCreateAccountButton() {
+        registerPage =new RegisterPage();
+        registerPage.createAccountButton.click();
+        ReuseableMethods.wait(1);
+    }
+
+    @Then("After account created verify that {string} is visible")
+    public void after_account_created_verify_that_is_visible(String text) {
+        registerPage =new RegisterPage();
+        Assert.assertEquals(text, registerPage.accountCreatedText.getText());
     }
 
     @And("Click Continue button in Account Created Page")
     public void clickContinueButtonInAccountCreatedPage() {
-    }
+        registerPage =new RegisterPage();
+        registerPage.continueButtonAfterCreated.click();
+        ReuseableMethods.wait(1);
+        //if there is a popup add, close add
+        Driver.getDriver().get("https://automationexercise.com/account_created#google_vignette");
+        Actions action = new Actions(Driver.getDriver());
+        action.sendKeys(Keys.ESCAPE).build().perform();
+        ReuseableMethods.wait(1);
+        //click comtiue
+        registerPage.continueButtonAfterCreated.click();
 
-    @And("if there is a popup add, close add")
-    public void ifThereIsAPopupAddCloseAdd() {
     }
 
     @Then("Verify that Logged in as username is visible")
     public void verifyThatLoggedInAsUsernameIsVisible() {
+        registerPage =new RegisterPage();
+        Assert.assertTrue(registerPage.loggedInAsText.isDisplayed());
+        ReuseableMethods.wait(1);
     }
 
     @And("Click Delete Account button")
     public void clickDeleteAccountButton() {
+        registerPage =new RegisterPage();
+        registerPage.deleteAccountButton.click();
+        ReuseableMethods.wait(1);
+    }
+
+
+    @Then("After account deleted verify that {string} is visible")
+    public void after_account_deleted_verify_that_is_visible(String text) {
+        registerPage =new RegisterPage();
+        Assert.assertEquals(text, registerPage.accountDeletedText.getText());
     }
 
     @And("click Continue button in Account Deleted Page")
     public void clickContinueButtonInAccountDeletedPage() {
+        registerPage =new RegisterPage();
+        registerPage.continueButtonAfterDelete.click();
+        ReuseableMethods.wait(1);
     }
 
     @And("close the page")
     public void closeThePage() {
+        Driver.closeDriver();
     }
+
 
 
 }

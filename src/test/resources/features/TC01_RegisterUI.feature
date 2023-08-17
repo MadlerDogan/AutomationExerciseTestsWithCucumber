@@ -3,7 +3,7 @@ Feature: Automatin Exercise
   Background: Launch browser and website
     Given Launch browser
     When Navigate to url "http://automationexercise.com"
-  @US01
+  @TC01
   Scenario Outline: TC01 Register
     Given Verify that home page is visible successfully
     And Click on Signup Login button
@@ -16,12 +16,11 @@ Feature: Automatin Exercise
     And Select checkbox Receive special offers from our partners!
     When Fill details: "<First name>", "<Last name>", "<Company>", "<Address>", "<Address2>", "<Country>", "<State>", "<City>", "<Zipcode>", "<Mobile Number>"
     And Click Create Account button
-    Then Verify that "ACCOUNT CREATED!" is visible
+    Then After account created verify that "ACCOUNT CREATED!" is visible
     And Click Continue button in Account Created Page
-    And  if there is a popup add, close add
     Then Verify that Logged in as username is visible
     And Click Delete Account button
-    Then Verify that "ACCOUNT DELETED!" is visible
+    Then After account deleted verify that "ACCOUNT DELETED!" is visible
     And click Continue button in Account Deleted Page
     And close the page
 

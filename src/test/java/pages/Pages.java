@@ -5,8 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class RegisterPage {
-    public RegisterPage(){
+public class Pages {
+    public Pages(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
@@ -105,6 +105,19 @@ public class RegisterPage {
 
     @FindBy(xpath = "//a[@data-qa='continue-button']")
     public WebElement continueButtonAfterDelete;
+
+    @FindBy(xpath = "//h2[text()='Login to your account']")
+    public WebElement loginToYourAccountText;
+
+    @FindBy(xpath = "//*[@type='email']")
+    public WebElement emailAddressForLogin;
+
+    @FindBy(xpath = "//*[@type='password']")
+    public WebElement passwordForLogin;
+
+    @FindBy(xpath = "(//*[@type='submit'])[1]")
+    public WebElement loginButton;
+
 
 
 }

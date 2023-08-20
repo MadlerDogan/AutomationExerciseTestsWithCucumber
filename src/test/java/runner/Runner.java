@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
         plugin = {"html:src/test/resources/reports/Reports.html"},
         features = "src/test/resources/features",
         glue ="stepdef",
-        tags = "@TC01"
+        tags = "@TC02"
 
 )
 public class Runner {

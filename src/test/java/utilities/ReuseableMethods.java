@@ -31,6 +31,35 @@ public class ReuseableMethods {
         }
     }
 
+
+
+    public static String generateGender() {
+
+        int num = faker.instance().number().numberBetween(0, 2);
+        if(num==0){
+            return "MALE";
+        }
+        else
+        {
+            return "FEMALE";
+        }
+    }
+
+    public static String generateMonth() {
+        String[] months = {
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        };
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(months.length);
+
+        return  months[randomIndex];
+
+    }
+
+
+
     public static String generateDateOfBirth() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, -1); // 1 ay öncesini almak için

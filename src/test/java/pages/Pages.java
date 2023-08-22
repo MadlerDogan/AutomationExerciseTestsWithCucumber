@@ -117,6 +117,14 @@ public class Pages {
 
     @FindBy(xpath = "(//*[@type='submit'])[1]")
     public WebElement loginButton;
+    @FindBy(xpath = "//p[text()='Your email or password is incorrect!']")
+    public WebElement emailOrPasswortIsIncorrectText;
+
+    @FindBy(xpath = "//a[text()=' Logout']")
+    public WebElement logoutButton;
+
+    @FindBy(xpath = "//a[@style='color: orange;']")
+    public WebElement loginPageIsVisible;
 
 
 

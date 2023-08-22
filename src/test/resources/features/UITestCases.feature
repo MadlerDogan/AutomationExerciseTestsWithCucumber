@@ -30,6 +30,7 @@ Feature: Automation Exercise UI Tests
       | name | email                | Title | Password | Day | Month   | Year | First name | Last name | Company    | Address     | Address2 | Country | State  | City        | Zipcode | Mobile Number |
       | John | John012578@gmail.com | Man   | Password | 1   | January | 2000 | John       | Wick      | ST Company | Company Str | No 52    | India   | Mumbai | Mumbai City | 25809   | 01252584569   |
 
+
   @TC02
   Scenario: TC02 Login User with correct email and password
     Given Click on Signup Login button
@@ -39,3 +40,25 @@ Feature: Automation Exercise UI Tests
     Then Verify that Logged in as username is visible
     And Click Delete Account button
     Then After account deleted verify that "ACCOUNT DELETED!" is visible
+    And close the page
+
+  @TC03
+  Scenario: TC03 Login User with incorrect email and password
+    Given Click on Signup Login button
+    Then Verify Login to your account is visible
+    And Enter incorrect email address and password
+    And Click login button
+    Then Verify error your email or password is incorrect! is visible
+    And close the page
+
+  @TC04
+  Scenario: TC04 Logout User
+    Given Click on Signup Login button
+    Then Verify Login to your account is visible
+    And Enter correct email address and password
+    And Click login button
+    Then Verify that Logged in as username is visible
+    And Click Logout button
+    Then Verify that user is navigated to login page
+    And close the page
+

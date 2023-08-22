@@ -14,7 +14,7 @@ import pages.Pages;
 import utilities.Driver;
 import utilities.ReuseableMethods;
 
-public class TC01_RegisterStepDefs {
+public class UIStepDefs {
    Pages pages;
     Faker faker = new Faker();
 
@@ -236,7 +236,9 @@ public class TC01_RegisterStepDefs {
     @And("Enter correct email address and password")
     public void enterCorrectEmailAddressAndPassword() {
         pages =new Pages();
+        // Enter e-mail
         pages.emailAddressForLogin.sendKeys("Macupicu@gmail.com");
+        //Enter password
         pages.passwordForLogin.sendKeys("password");
     }
 
@@ -248,4 +250,36 @@ public class TC01_RegisterStepDefs {
     }
 
 
+    @And("Enter incorrect email address and password")
+    public void enterIncorrectEmailAddressAndPassword() {
+        pages =new Pages();
+       // Enter e-mail
+        pages.emailAddressForLogin.sendKeys("Macupicu@gmail.com");
+        //Enter password
+        pages.passwordForLogin.sendKeys("password");
+        ReuseableMethods.wait(1);
+    }
+
+    @Then("Verify error your email or password is incorrect! is visible")
+    public void verifyErrorYourEmailOrPasswordIsIncorrectIsVisible() {
+
+        pages =new Pages();
+        Assert.assertTrue(pages.emailOrPasswortIsIncorrectText.isDisplayed());
+
+    }
+
+    @And("Click Logout button")
+    public void clickLogoutButton() {
+        pages =new Pages();
+        pages.logoutButton.click();
+        ReuseableMethods.wait(1);
+
+    }
+
+    @Then("Verify that user is navigated to login page")
+    public void verifyThatUserIsNavigatedToLoginPage() {
+        pages =new Pages();
+        Assert.assertTrue(pages.loginPageIsVisible.isDisplayed());
+
+    }
 }

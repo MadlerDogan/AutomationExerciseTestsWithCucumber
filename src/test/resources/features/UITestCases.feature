@@ -25,7 +25,6 @@ Feature: Automation Exercise UI Tests
     And click Continue button in Account Deleted Page
     And close the page
 
-
     Examples:
       | name | email                | Title | Password | Day | Month   | Year | First name | Last name | Company    | Address     | Address2 | Country | State  | City        | Zipcode | Mobile Number |
       | John | John012578@gmail.com | Man   | Password | 1   | January | 2000 | John       | Wick      | ST Company | Company Str | No 52    | India   | Mumbai | Mumbai City | 25809   | 01252584569   |

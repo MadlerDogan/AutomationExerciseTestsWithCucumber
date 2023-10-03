@@ -60,4 +60,3 @@ Feature: Automation Exercise UI Tests
     And Click Logout button
     Then Verify that user is navigated to login page
     And close the page
-

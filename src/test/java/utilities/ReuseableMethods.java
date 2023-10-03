@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pojos.RegisterPojo;
 
 
 import java.text.DateFormat;
@@ -19,7 +20,7 @@ import java.util.Random;
 
 public class ReuseableMethods {
 
-
+    public static  RegisterPojo registerPojo;
 
     static Faker faker = new Faker();
 
@@ -210,6 +211,11 @@ public class ReuseableMethods {
 
     }
 
+    public static RegisterPojo generateRegister() {
 
+
+
+        return registerPojo;
+    }
 
 }

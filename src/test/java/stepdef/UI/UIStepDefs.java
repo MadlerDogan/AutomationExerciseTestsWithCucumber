@@ -282,4 +282,6 @@ public class UIStepDefs {
         Assert.assertTrue(pages.loginPageIsVisible.isDisplayed());
 
     }
+
+
 }

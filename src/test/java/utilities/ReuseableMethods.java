@@ -38,11 +38,11 @@ public class ReuseableMethods {
 
         int num = faker.instance().number().numberBetween(0, 2);
         if(num==0){
-            return "MALE";
+            return "Mr";
         }
         else
         {
-            return "FEMALE";
+            return "Mrs";
         }
     }
 
@@ -109,27 +109,27 @@ public class ReuseableMethods {
 
 
 
-    public static String kelimeUret(int limit) {
-        String kelime = "";
+    public static String generateWord(int limit) {
+        String word = "";
         Random r = new Random();
         for (int i = 0; i < limit; i++) {
             char c = (char)(r.nextInt(26) + 'a');
-            kelime += c;
+            word += c;
         }
-        return kelime;
+        return word;
     }
-    public static String stringSayiUret(int baslangic, int bitis){
+    public static String generateStringNumber(int first, int end){
 
-        String sayi =""+faker.instance().number().numberBetween(baslangic, bitis);
+        String number =""+faker.instance().number().numberBetween(first, end);
 
-        return sayi;
+        return number;
     }
 
-    public static Integer integerSayiUret(int baslangic, int bitis){
+    public static Integer generateIntegerNumber(int first, int end){
 
-        Integer sayi =faker.instance().number().numberBetween(baslangic, bitis);
+        Integer number =faker.instance().number().numberBetween(first, end);
 
-        return sayi;
+        return number;
 
     }
     public static double generateBetweenZeroAndHundredDoubleRandomNumber() {
@@ -187,35 +187,53 @@ public class ReuseableMethods {
         return dateString.substring(6, 10);
     }
 
-
-    public static String lessonChange(int lessonId){
-        String lesson ="";
-        switch (lessonId) {
-            case 1:
-                lesson="Cypress";
-            case 2:
-                lesson="Java";
-                break;
-
-            case 3:
-                lesson="JavaScript";
-                break;
-
-            case 4:
-                lesson="Phyton";
-                break;
-
-        }
-
-        return lesson;
-
+    public static int generateRandomNumber(int min, int max) {
+        Random random = new Random();
+       int randomNumber = random.nextInt((max - min) + 1) + min; // Rastgele sayı üretme işlemi
+        return randomNumber;
     }
+
 
     public static RegisterPojo generateRegister() {
 
-
+        registerPojo = new RegisterPojo();
+        registerPojo.setName(faker.name().username());
+        registerPojo.setEmail(faker.internet().emailAddress());
+        registerPojo.setPassword(faker.internet().password());
+        registerPojo.setTitle(generateGender());
+        registerPojo.setBirth_date(generateRandomNumber(1,28));
+        registerPojo.setBirth_month(generateMonth());
+        registerPojo.setBirth_year(generateRandomNumber(1900,2022));
+        registerPojo.setFirstname(faker.name().firstName());
+        registerPojo.setLastname(faker.name().lastName());
+        registerPojo.setFirstname(faker.company().name());
+        registerPojo.setAddress1(faker.address().streetName());
+        registerPojo.setAddress2(faker.address().secondaryAddress());
+        registerPojo.setCountry(selectRandomCountry());
+        registerPojo.setZipcode(generateRandomNumber(1000,9999));
+        registerPojo.setState(faker.address().state());
+        registerPojo.setCity(faker.address().city());
+        registerPojo.setMobile_number(generateRandomNumber(10000,99999)+generateRandomNumber(10000,99999));
 
         return registerPojo;
     }
+
+
+
+    public static String selectRandomCountry() {
+        String[] countryListArray = {
+                "India",
+                "United States",
+                "Canada",
+                "Australia",
+                "Israel",
+                "Singapore",
+                };
+        Random random = new Random();
+        int randomIndex = random.nextInt(countryListArray.length);
+        return countryListArray[randomIndex];
+    }
+
+
 
 }

@@ -5,19 +5,29 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import org.apache.hc.core5.http.ContentType;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pages.Pages;
+import pojos.RegisterPojo;
+import stepdef.API.APIStepDefs;
 import utilities.Driver;
 import utilities.ReuseableMethods;
+
+import static baseurl.AutomationExerciseBaseUrl.setUp;
+import static baseurl.AutomationExerciseBaseUrl.spec;
+import static io.restassured.RestAssured.given;
+import static utilities.ReuseableMethods.generateWord;
+import static utilities.ReuseableMethods.registerPojo;
 
 public class UIStepDefs {
    Pages pages;
     Faker faker = new Faker();
-
+    public static Response response;
 
 
 
@@ -237,9 +247,12 @@ public class UIStepDefs {
     public void enterCorrectEmailAddressAndPassword() {
         pages =new Pages();
         // Enter e-mail
-        pages.emailAddressForLogin.sendKeys("Macupicu@gmail.com");
+
+//        pages.emailAddressForLogin.sendKeys("Macupicu@gmail.com");
+        pages.emailAddressForLogin.sendKeys(registerPojo.getEmail());
         //Enter password
-        pages.passwordForLogin.sendKeys("password");
+//        pages.passwordForLogin.sendKeys("password");
+        pages.passwordForLogin.sendKeys(registerPojo.getPassword());
     }
 
     @And("Click login button")
@@ -254,9 +267,9 @@ public class UIStepDefs {
     public void enterIncorrectEmailAddressAndPassword() {
         pages =new Pages();
        // Enter e-mail
-        pages.emailAddressForLogin.sendKeys("Macupicu@gmail.com");
+        pages.emailAddressForLogin.sendKeys(generateWord(2)+registerPojo.getEmail());
         //Enter password
-        pages.passwordForLogin.sendKeys("password");
+        pages.passwordForLogin.sendKeys(generateWord(2)+registerPojo.getPassword());
         ReuseableMethods.wait(1);
     }
 
@@ -284,4 +297,36 @@ public class UIStepDefs {
     }
 
 
+    @Given("Create an account in API to use in this test")
+    public void createAnAccountInAPIToUseInThisTest() {
+
+        ReuseableMethods.generateRegister();
+
+        setUp();
+
+        spec.pathParam("first","createAccount");
+
+
+        response = given(spec)
+                .contentType(String.valueOf(ContentType.APPLICATION_FORM_URLENCODED))
+                .formParam("name", registerPojo.getName())
+                .formParam("email", registerPojo.getEmail())
+                .formParam("password", registerPojo.getPassword())
+                .formParam("title", registerPojo.getTitle())
+                .formParam("birth_date", registerPojo.getBirth_date())
+                .formParam("birth_month", registerPojo.getBirth_month())
+                .formParam("birth_year", registerPojo.getBirth_year())
+                .formParam("firstname", registerPojo.getFirstname())
+                .formParam("lastname", registerPojo.getLastname())
+                .formParam("company", registerPojo.getCompany())
+                .formParam("address1", registerPojo.getAddress1())
+                .formParam("address2", registerPojo.getAddress2())
+                .formParam("country", registerPojo.getCountry())
+                .formParam("zipcode", registerPojo.getZipcode())
+                .formParam("state", registerPojo.getState())
+                .formParam("city", registerPojo.getCity())
+                .formParam("mobile_number", registerPojo.getMobile_number())
+                .post("{first}");
+
+    }
 }

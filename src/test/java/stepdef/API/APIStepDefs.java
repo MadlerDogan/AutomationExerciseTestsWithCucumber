@@ -11,6 +11,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.MultiPartSpecification;
 import io.restassured.specification.RequestSpecification;
 import org.apache.hc.core5.http.ContentType;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import pojos.RegisterPojo;
 
@@ -75,6 +76,25 @@ public class APIStepDefs {
      }
 
 
+
+
+
+    @Given("Delete Request parameters : {string}, {string}")
+    public void deleteRequestParameters(String email, String password) {
+        setUp();
+        spec.pathParam("first", "deleteAccount");
+
+
+        response = given(spec)
+                .contentType(String.valueOf(ContentType.APPLICATION_FORM_URLENCODED))
+                .formParam("email",email)
+                .formParam("password", password)
+                .delete("{first}");
+        response.prettyPrint();
+
+
+    }
+
     @Then("Verify Response Code: {string}, Response Message as {string}")
     public void verifyResponseCodeResponseMessageAs(String response_code1, String response_message) {
         JsonPath jsonPath = response.body().jsonPath();
@@ -82,12 +102,12 @@ public class APIStepDefs {
 
         assertEquals(jsonPath.getInt("responseCode"),response_code);
         assertEquals(jsonPath.get("message"), response_message);
-
-
     }
 
 
 
+    @Test
+    public void test(){
 
-
+    }
 }
